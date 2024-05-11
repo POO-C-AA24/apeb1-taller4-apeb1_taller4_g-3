@@ -8,37 +8,50 @@ package problema02;
  *
  * @author VEL-USER
  */
-public class Empleado {
-    public String nombreEmpleado;
-    public double sueldoEmpleado;
-    public int edadEmpleado;
-    public int opc;
-    public double aumento;
-    public double sueldoFinal;
-    public double promedioSueldo;
+class Empleado {
+    private String nombre;
+    private double salario;
+    private int edad;
 
-    public Empleado(String nombreEmpleado, double sueldoEmpleado, int edadEmpleado,int opc,double aumento) {
-        this.nombreEmpleado = nombreEmpleado;
-        this.sueldoEmpleado = sueldoEmpleado;
-        this.edadEmpleado = edadEmpleado;
-        this.opc = opc;
-        this.aumento = aumento;
-    }
-    public void PromedioSueldos(){
-        promedioSueldo += sueldoEmpleado/opc;
-    }
-    public void AumentoSalario(){
-        if (sueldoEmpleado < promedioSueldo){
-            sueldoFinal = sueldoEmpleado + (aumento/100);
-        }else{
-            sueldoFinal = sueldoEmpleado;
-        }
+    public Empleado(String nombre, double salario, int edad) {
+        this.nombre = nombre;
+        this.salario = salario;
+        this.edad = edad;
     }
 
-    @Override
-    public String toString() {
-        return "Empleado" + "/nNombre del Empleado= " + nombreEmpleado + ",\nSueldo del Empleado= " + sueldoEmpleado + ",\nEdad del Empleado=" + edadEmpleado + "\nSueldo Final del Empleado" + sueldoFinal;
+    public String getNombre() {
+        return nombre;
     }
-    
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public double getSalario() {
+        return salario;
+    }
+
+    public void setSalario(double salario) {
+        this.salario = salario;
+    }
+
+    public int getEdad() {
+        return edad;
+    }
+
+    public void setEdad(int edad) {
+        this.edad = edad;
+    }
+
+    public void aumentarSalario(double porcentajeAumento) {
+        double aumento = salario * porcentajeAumento / 100;
+        salario += aumento;
+    }
+
+    public void mostrarInformacion() {
+        System.out.println("Nombre: " + nombre);
+        System.out.println("Salario: $" + salario);
+        System.out.println("Edad: " + edad);
+    }
 }
 

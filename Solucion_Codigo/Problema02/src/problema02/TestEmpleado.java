@@ -4,6 +4,7 @@
  */
 package problema02;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -12,25 +13,40 @@ import java.util.Scanner;
  */
 public class TestEmpleado {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
-        Scanner tc = new Scanner(System.in);
-        System.out.println("Cuantos empleado va a ingresar?");
-        int opc = tc.nextInt();
-        Empleado arrayEmpleados[] = new Empleado[opc];
-        while (true) {
-            System.out.println("Ingrese el nombre, sueldo, edad del Empleado y porcentaje de aumento salarial");
-            arrayEmpleados[opc] = new Empleado(tc.nextLine(), tc.nextDouble(), tc.nextInt(),opc,tc.nextDouble());
-            opc++;
-            if (opc >= arrayEmpleados.length) {
-                break;
-            }
+        Scanner scanner = new Scanner(System.in);
+        ArrayList<Empleado> empleados = new ArrayList<>();
+
+        System.out.println("Agregar empleados (nombre, salario, edad):");
+        for (int i = 0; i < 3; i++) {
+            System.out.print("Empleado " + (i + 1) + ": ");
+            String nombre = scanner.next();
+            double salario = scanner.nextDouble();
+            int edad = scanner.nextInt();
+            Empleado empleado = new Empleado(nombre, salario, edad);
+            empleados.add(empleado);
         }
-        System.out.println("LISTA DE EMPLEADOS");
-        for (Empleado empleados :arrayEmpleados ){
-            System.out.println(empleados);
+
+        System.out.println("\nInformación de los empleados:");
+        for (Empleado empleado : empleados) {
+            empleado.mostrarInformacion();
+            System.out.println();
+        }
+        System.out.print("Ingrese el porcentaje de aumento salarial: ");
+        double porcentajeAumento = scanner.nextDouble();
+        double salarioTotal = 0;
+        for (Empleado empleado : empleados) {
+            salarioTotal += empleado.getSalario();
+        }
+        double salarioPromedio = salarioTotal / empleados.size();
+
+        System.out.println("\nNuevos salarios después del aumento:");
+        for (Empleado empleado : empleados) {
+            if (empleado.getSalario() < salarioPromedio) {
+                empleado.aumentarSalario(porcentajeAumento);
+                empleado.mostrarInformacion();
+                System.out.println();
+            }
         }
     }
 }
