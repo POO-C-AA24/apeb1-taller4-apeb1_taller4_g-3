@@ -17,7 +17,7 @@ public class TestEmpleado {
         Scanner scanner = new Scanner(System.in);
         ArrayList<Empleado> empleados = new ArrayList<>();
 
-        System.out.println("Agregar empleados (nombre, salario, edad):");
+        System.out.println("Deme el nombre, salario y edad del Empleado :");
         for (int i = 0; i < 3; i++) {
             System.out.print("Empleado " + (i + 1) + ": ");
             String nombre = scanner.next();
